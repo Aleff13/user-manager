@@ -9,16 +9,9 @@ export class CreateUserDto {
   name: string;
 
   @ApiProperty({
-    description: 'user password',
+    description: 'user role',
     minimum: 240,
     default: '',
   })
-  password: string;
-
-  @ApiProperty({
-    description: 'user organization',
-    minimum: 240,
-    default: '',
-  })
-  organization?: string;
+  role: string;
 }

@@ -15,7 +15,7 @@ export class UsersService {
   async create(createUserDto: CreateUserDto) {
     const user: User = {
       name: createUserDto.name,
-      password: createUserDto.password,
+      role: createUserDto.role,
     };
     return await this.userRepo.createUser(user);
   }
@@ -32,8 +32,7 @@ export class UsersService {
     const user: User = {
       id: id,
       name: updateUserDto.name,
-      password: updateUserDto.password,
-      organization: updateUserDto.organization,
+      role: updateUserDto.role,
     };
 
     return await this.userRepo.updateUser(user);

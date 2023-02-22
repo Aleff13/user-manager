@@ -1,16 +1,19 @@
 import type { User } from '../schema/user';
 import UserSchema from '../schema/userSchema';
+import { v4 as uuidv4 } from 'uuid';
 
 class UserRepository {
   public async getAll() {
     const users = await UserSchema.scan()
-      .attributes(['id', 'name', 'password', 'organization'])
+      .attributes(['id', 'name', 'role'])
       .exec();
 
     return users;
   }
 
   public async createUser(user: User) {
+    user.id = uuidv4(); //this is the issue, it seems
+    console.log({ user });
     const users = await UserSchema.create(user);
 
     return users;

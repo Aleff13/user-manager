@@ -1,8 +1,7 @@
 interface User {
   id?: string;
   name: string;
-  password: string;
-  organization?: string;
+  role: string;
   createdAt?: number;
   updatedAt?: number;
 }
