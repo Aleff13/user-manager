@@ -2,8 +2,8 @@ import { Box, Button, Container, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { AddUserDilog } from "./components/AddUserDialog";
-import { UserCard } from "./components/structureCard";
-import UserService, { roleEnum, userInterface } from "./services/users";
+import { UserCard } from "./components/UserCard";
+import UserService, { userInterface } from "./services/users";
 
 const App = () => {
   const [open, setOpen] = useState(false);

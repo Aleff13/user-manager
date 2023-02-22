@@ -1,7 +1,7 @@
 import * as React from "react";
 import Typography from "@mui/material/Typography";
 import { Card, CardActions, CardContent, IconButton } from "@mui/material";
-import { DetailsUserDialog } from "./DetailsDialog";
+import { EditUserDialog } from "./DetailsDialog";
 import UserService, { roleEnum, userInterface } from "../services/users";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useState } from "react";
@@ -13,7 +13,7 @@ interface UserCardProps {
 }
 const UserCard = ({ name, role, id }: UserCardProps) => {
   const [open, setOpen] = useState(false);
-  const user: userInterface = { name, role };
+  const user: userInterface = { name, role, id };
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -47,7 +47,7 @@ const UserCard = ({ name, role, id }: UserCardProps) => {
         <IconButton onClick={handleRemove} color="primary">
           <DeleteForeverIcon />
         </IconButton>
-        <DetailsUserDialog open={open} onClose={handleClose} user={user} />
+        <EditUserDialog open={open} onClose={handleClose} user={user} />
       </CardActions>
     </Card>
   );

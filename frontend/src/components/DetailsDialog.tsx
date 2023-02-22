@@ -17,11 +17,7 @@ export interface SimpleDialogProps {
   user: userInterface;
 }
 
-export const DetailsUserDialog = ({
-  open,
-  onClose,
-  user,
-}: SimpleDialogProps) => {
+export const EditUserDialog = ({ open, onClose, user }: SimpleDialogProps) => {
   const [role, setRole] = useState<roleEnum>(user.role);
   const [name, setName] = useState<string>(user.name);
 
@@ -34,11 +30,12 @@ export const DetailsUserDialog = ({
   };
 
   const onSave = async () => {
-    const user: userInterface = {
+    const userData = {
       name,
       role,
+      id: user.id,
     };
-    await UserService.editUser(user);
+    await UserService.editUser(userData);
     location.reload();
   };
 
