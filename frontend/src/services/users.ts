@@ -9,36 +9,19 @@ export enum roleEnum {
   user = "user",
   userPremium = "user-premium",
 }
+
 const apiUrl = "http://localhost:3000";
 
 class UserService {
-  static getUsers = async () => {
-    const mock: userInterface[] = [
-      {
-        name: "joao",
-        role: roleEnum.admin,
-        id: "1234",
-      },
-      {
-        name: "claudia",
-        role: roleEnum.user,
-        id: "123456",
-      },
-    ];
-
+  static getUsers = async (): Promise<userInterface[]> => {
     const users = fetch(`${apiUrl}/users`).then((res) => res.json());
 
-    return users as unknown as userInterface;
+    return users as unknown as userInterface[];
   };
 
-  static addUser = async (
-    user: userInterface = {
-      name: "cleber",
-      role: roleEnum.admin,
-    }
-  ) => {
+  static addUser = async (user: userInterface) => {
     const options = {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -48,9 +31,21 @@ class UserService {
     return response;
   };
 
+  static editUser = async (user: userInterface) => {
+    const options = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    };
+    const response = await fetch(`${apiUrl}/users/${user.id}`, options);
+    return response;
+  };
+
   static removeUser = async (id: string) => {
     const options = {
-      method: "DELETE", // *GET, POST, PUT, DELETE, etc.
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },

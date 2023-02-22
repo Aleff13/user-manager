@@ -1,14 +1,11 @@
 import * as React from "react";
 import Typography from "@mui/material/Typography";
 import { Card, CardActions, CardContent, IconButton } from "@mui/material";
-import CodeIcon from "@mui/icons-material/Code";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
-import { DetailsDialog } from "./DetailsDialog";
-import UserService, { roleEnum } from "../services/users";
+import { DetailsUserDialog } from "./DetailsDialog";
+import UserService, { roleEnum, userInterface } from "../services/users";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useState } from "react";
-
+import EditIcon from "@mui/icons-material/Edit";
 interface UserCardProps {
   name: string;
   role: roleEnum;
@@ -16,7 +13,7 @@ interface UserCardProps {
 }
 const UserCard = ({ name, role, id }: UserCardProps) => {
   const [open, setOpen] = useState(false);
-
+  const user: userInterface = { name, role };
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -36,7 +33,7 @@ const UserCard = ({ name, role, id }: UserCardProps) => {
       elevation={8}
     >
       <CardContent sx={{ textAlignLast: "start" }}>
-        <Typography sx={{ fontSize: 20 }} color="white" gutterBottom>
+        <Typography sx={{ fontSize: 22 }} color="white" gutterBottom>
           {name}
         </Typography>
         <Typography variant="body2" color="white" sx={{ fontSize: 16 }}>
@@ -45,18 +42,12 @@ const UserCard = ({ name, role, id }: UserCardProps) => {
       </CardContent>
       <CardActions sx={{ gap: 2, pt: 2 }}>
         <IconButton onClick={handleClickOpen} color="primary">
-          <VisibilityIcon />
+          <EditIcon />
         </IconButton>
         <IconButton onClick={handleRemove} color="primary">
           <DeleteForeverIcon />
         </IconButton>
-        <DetailsDialog
-          open={open}
-          onClose={handleClose}
-          name={name}
-          role={role}
-          isDetails
-        />
+        <DetailsUserDialog open={open} onClose={handleClose} user={user} />
       </CardActions>
     </Card>
   );

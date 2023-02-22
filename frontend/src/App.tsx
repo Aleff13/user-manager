@@ -7,13 +7,7 @@ import UserService, { roleEnum, userInterface } from "./services/users";
 
 const App = () => {
   const [open, setOpen] = useState(false);
-  const [users, setUsers] = useState<userInterface[]>([
-    {
-      name: "claudia",
-      role: roleEnum.user,
-      id: "123456",
-    },
-  ]);
+  const [users, setUsers] = useState<userInterface[]>();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -59,14 +53,15 @@ const App = () => {
         </Button>
         <AddUserDilog open={open} onClose={handleClose}></AddUserDilog>
 
-        {users.map((user) => (
-          <UserCard
-            id={user.id || ""}
-            name={user.name}
-            role={user.role}
-            key={user.id}
-          ></UserCard>
-        ))}
+        {users &&
+          users.map((user) => (
+            <UserCard
+              id={user.id || ""}
+              name={user.name}
+              role={user.role}
+              key={user.id}
+            ></UserCard>
+          ))}
       </Box>
     </Container>
   );
