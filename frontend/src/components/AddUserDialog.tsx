@@ -37,7 +37,7 @@ export const AddUserDilog = ({ open, onClose }: SimpleDialogProps) => {
     };
     //call method to add user
     await UserService.addUser(user);
-    onClose();
+    location.reload();
   };
 
   return (

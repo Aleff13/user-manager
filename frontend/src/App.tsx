@@ -6,7 +6,7 @@ import { UserCard } from "./components/structureCard";
 import UserService, { roleEnum, userInterface } from "./services/users";
 
 const App = () => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [users, setUsers] = useState<userInterface[]>([
     {
       name: "claudia",
@@ -58,6 +58,7 @@ const App = () => {
           Add new user
         </Button>
         <AddUserDilog open={open} onClose={handleClose}></AddUserDilog>
+
         {users.map((user) => (
           <UserCard
             id={user.id || ""}

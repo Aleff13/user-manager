@@ -7,6 +7,7 @@ import { DetailsDialog } from "./DetailsDialog";
 import UserService, { roleEnum } from "../services/users";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import { useState } from "react";
 
 interface UserCardProps {
   name: string;
@@ -14,7 +15,7 @@ interface UserCardProps {
   id: string;
 }
 const UserCard = ({ name, role, id }: UserCardProps) => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -26,6 +27,7 @@ const UserCard = ({ name, role, id }: UserCardProps) => {
 
   const handleRemove = async () => {
     await UserService.removeUser(id);
+    location.reload();
   };
 
   return (
